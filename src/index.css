@@ -128,7 +128,7 @@ body {
   opacity: 0;
   user-select: none;
   transition: opacity .15s;
-  padding: 1rem 1rem;
+  padding: 1.3rem 1.3rem;
   gap: 1rem;
 }
 
@@ -138,17 +138,38 @@ body {
 }
 
 .cart-dropdown-title {
+  font-weight: 700;
+  opacity: .8;
 }
 
 .cart-dropdown-data-container {
   display: flex;
+  flex-direction: column;
   height: 100%;
   border-top: 1px solid var(--neutral-light);
   padding-top: 1rem;
+  gap: 1rem;
+}
+
+.cart-dropdown-data-container-empty {
+  border-top: 1px solid var(--neutral-light);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  color: var(--neutral-medium);
+}
+
+.cart-product-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .cart-dropdown-product-details {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   color: var(--neutral-dark);
@@ -167,6 +188,7 @@ body {
 .cart-product-total {
   color: black;
   font-weight: 700;
+  margin-left: .2rem;
 }
 
 .cart-dropdown-data {
@@ -193,6 +215,9 @@ body {
 .checkout-btn {
   box-shadow: none;
   display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1.2rem;
 }
 
 .trash-icon {
@@ -200,7 +225,7 @@ body {
 }
 
 .avatar {
-  height: 2.4rem;
+  height: 2.8rem;
   width: auto;
   cursor: pointer;
 }
@@ -243,6 +268,10 @@ body {
   border-radius: .5rem;
   width: auto;
   cursor: pointer;
+}
+
+.gallery img:hover {
+  opacity: .5;
 }
 
 .gallery img:focus {
@@ -363,5 +392,45 @@ body {
   opacity: .5;
 }
 
+/* Lightbox styles */
 
+.lightbox-container {
+  top: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--translucent-black);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.close-icon {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  align-self: flex-end;
+}
+
+.close-icon:hover {
+  filter: invert(48%) sepia(74%) saturate(981%) hue-rotate(348deg) brightness(104%) contrast(101%);
+}
+
+.image-previous-container {
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+
+}
+
+.image-previous, .image-next {
+  cursor: pointer;
+  height: 1rem;
+  width: auto;
+}

@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import MainContainer from "./components/MainContainer";
+import Lightbox from "./components/Lightbox";
 import { CartProvider } from './contexts/CartContext'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <CartProvider>
       <Header />
       <MainContainer />
+      <Lightbox />
     </CartProvider>
   )
 }

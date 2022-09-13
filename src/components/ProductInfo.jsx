@@ -41,6 +41,7 @@ const ProductInfo = () => {
       }
       
       setItems(newItemsArray)
+      setQuantity(0)
     }
   }
 
