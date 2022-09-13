@@ -1,13 +1,367 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap'); 
+
+:root {
+  --primary: hsl(26, 100%, 55%);
+  --primary-pale: hsl(25, 100%, 94%);
+  --neutral-very-dark: hsl(220, 13%, 13%);
+  --neutral-dark: hsl(219, 9%, 45%);
+  --neutral-medium: hsl(220, 14%, 75%);
+  --neutral-light: hsl(223, 64%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --translucent-black: rgba(0, 0, 0, .75);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*, 
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: 'Kumbh Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* Navigation styles */
+.burger {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0rem 5rem;
+  padding: 2rem;
+  height: 10vh;
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.logo {
+  height: 1.3rem;
+  width: auto;
+  margin-right: 5rem;
+}
+
+.logo-list-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-list li a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--neutral-dark);
+}
+
+.nav-list li a::after {
+  content: '';
+  background-color: var(--primary);
+  height: 3px;
+  width: 0;
+  display: block;
+  transform: translateY(2.1rem);
+  transition: all .2s;
+}
+
+.nav-list li a:hover {
+  color: var(--neutral-very-dark);
+}
+
+.nav-list li a:hover::after {
+  width: 100%;
+}
+
+.cart-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* Cart icon and cart dropdown stylings */
+
+.cart-container {
+  position: relative;
+}
+
+.cart-icon {
+  height: 1rem;
+  width: auto;
+  cursor: pointer;
+}
+
+.cart-icon:hover {
+  filter: brightness(0%);
+}
+
+.number-in-cart {
+  position: absolute;
+  top: -.4rem;
+  right: -.5rem;
+  font-size: .55rem;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0rem .4rem;
+  border-radius: .5rem;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 2.5rem;
+  left: -10rem;
+  height: fit-content;
+  min-width: 22rem;
+  border-radius: .3rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 10;
+  background-color: var(--white);
+  opacity: 0;
+  user-select: none;
+  transition: opacity .15s;
+  padding: 1rem 1rem;
+  gap: 1rem;
+}
+
+.cart-dropdown.active {
+  opacity: 1;
+  user-select: auto;
+}
+
+.cart-dropdown-title {
+}
+
+.cart-dropdown-data-container {
+  display: flex;
+  height: 100%;
+  border-top: 1px solid var(--neutral-light);
+  padding-top: 1rem;
+}
+
+.cart-dropdown-product-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--neutral-dark);
+}
+
+.cart-product-img {
+  height: 3rem;
+  width: auto;
+  border-radius: .3rem;
+}
+
+.cart-product-description {
+  line-height: 1.5;
+}
+
+.cart-product-total {
+  color: black;
+  font-weight: 700;
+}
+
+.cart-dropdown-data {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--neutral-dark);
+}
+
+.btn {
+  background-color: var(--primary);
+  color: white;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 1rem 5rem;
+  border: none;
+  border-radius: .5rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 10px 20px 10px hsla(26, 100%, 55%, .25);
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.checkout-btn {
+  box-shadow: none;
+  display: block;
+}
+
+.trash-icon {
+  cursor: pointer;
+}
+
+.avatar {
+  height: 2.4rem;
+  width: auto;
+  cursor: pointer;
+}
+
+.avatar:hover {
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+}
+
+/* main container styling */
+
+.main-container {
+  padding: 8rem;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+}
+
+.image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main-product-image {
+  height: 25rem;
+  width: auto;
+  border-radius: 1rem;
+}
+
+.gallery {
+  display: flex;
+  gap: 2rem;
+}
+
+.gallery img {
+  height: 5rem;
+  border-radius: .5rem;
+  width: auto;
+  cursor: pointer;
+}
+
+.gallery img:focus {
+  outline: 3px solid var(--primary);
+  opacity: .5;
+}
+
+/* Product information section */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+  align-self: flex-start;
+}
+
+.company-title {
+  text-transform: uppercase;
+  color: var(--primary);
+  font-size: .9rem;
+  letter-spacing: 2px;
+  margin-top: 2rem;
+}
+
+.product-title {
+  margin-top: 1.2rem;
+  font-size: 2.8rem;
+  line-height: 1.1;
+}
+
+.product-info p {
+  margin-top: 2.3rem;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--neutral-dark);
+  opacity: .85;
+}
+
+.pricing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.price-with-discount-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.new-price {
+  font-size: 1.7rem;
+}
+
+.discount {
+  background-color: var(--primary-pale);
+  padding: .2rem .6rem;
+  border-radius: .3rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.original-price {
+  margin-top: .8rem;
+  color: var(--neutral-medium);
+  text-decoration: line-through;
+}
+
+.cart-buttons-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-light);
+  border-radius: .5rem;
+}
+
+.quantity button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1.4rem 1rem;
+  transition: all .2s;
+}
+
+.quantity button:hover, .quantity button:active {
+  opacity: .7;
+}
+
+.quantity button:active {
+  opacity: .5;  
+}
+
+.selected-quantity {
+  font-weight: 700;
+  padding: 0rem 2.3rem;
+  max-width: 5rem;
+}
+
+.btn img {
+  filter: brightness(1000%);
+  height: 1rem;
+  width: auto;
+  margin-right: 1rem;
+}
+
+.btn:hover {
+  opacity: .7;
+}
+
+.btn:active {
+  opacity: .5;
+}
+
+
+
