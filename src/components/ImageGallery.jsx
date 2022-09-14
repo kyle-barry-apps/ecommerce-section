@@ -14,6 +14,7 @@ import iconClose from '../images/icon-close.svg'
 
 const ImageGallery = ({ lightboxStyles }) => {
   const [showcase, setShowcase] = useState(product1)
+
   const { toggleLightbox, setToggleLightbox } = useContext(LightboxContext)
   const productArray = [product1, product2, product3, product4]
 
@@ -53,8 +54,8 @@ const ImageGallery = ({ lightboxStyles }) => {
         {lightboxStyles ? <div onClick={() => setToggleLightbox(false)} className='close-icon-container'> <img className='close-icon' src={iconClose} alt='close icon' /> </div>: null}
         <img onClick={handleMainImageClick} className={lightboxStyles ? 'main-product-image lightbox' : 'main-product-image'} src={showcase} alt="Main product"/>  
         {/* Icons to render if lightbox is on  */}
-        {lightboxStyles ? <div onClick={handlePrevImageClick} className='image-previous-container'> <img className='image-previous' src={imagePrevious} alt='image previous icon' /> </div>: null} 
-        {lightboxStyles ? <div onClick={handleNextImageClick} className='image-next-container'> <img className='image-next' src={imageNext} alt='image next icon' /></div> : null}
+        <div onClick={handlePrevImageClick} className={lightboxStyles ? 'image-previous-container lightbox' : 'image-previous-container'}> <img className='image-previous' src={imagePrevious} alt='image previous icon' /> </div>
+        <div onClick={handleNextImageClick} className={lightboxStyles ? 'image-next-container lightbox' : 'image-next-container'}> <img className='image-next' src={imageNext} alt='image next icon' /></div>
       </div>
       <div className="gallery">
         <img onClick={()=> handleImageClick(product1)} src={product1thumbnail} alt="Secondary product thumbnail" tabIndex={0} />

@@ -70,9 +70,6 @@ const Header = ({ toggleBurgerMenu, setToggleBurgerMenu }) => {
         </ul>
       </div>
       <div className='cart-avatar-container'>
-        <div data-cart className='cart-container'>
-          <img data-cart onClick={() => setToggleCartMenu(!toggleCartMenu)} className='cart-icon' src={cartIcon} alt='Cart icon' />
-          <div data-cart className="number-in-cart">{getTotalQuantity()}</div>
           <div data-cart id='cart-dropdown' className={ toggleCartMenu ? 'cart-dropdown active' : 'cart-dropdown'}>
             <div data-cart className="cart-dropdown-title">Cart</div>
             <div data-cart className={items.length > 0 ? 'cart-dropdown-data-container' : 'cart-dropdown-data-container-empty'}>
@@ -80,6 +77,9 @@ const Header = ({ toggleBurgerMenu, setToggleBurgerMenu }) => {
             </div>
             {items.length > 0 ? <button data-cart className='btn checkout-btn'>Checkout</button> : null}
           </div>
+        <div data-cart className='cart-container'>
+          <img data-cart onClick={() => setToggleCartMenu(!toggleCartMenu)} className='cart-icon' src={cartIcon} alt='Cart icon' />
+          <div data-cart className="number-in-cart">{getTotalQuantity()}</div>
         </div>
         <img className='avatar' src={avatar} alt='Avatar image' />
       </div>

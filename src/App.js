@@ -10,13 +10,14 @@ function App() {
   const { toggleLightbox } = useContext(LightboxContext)
   const [toggleBurgerMenu, setToggleBurgerMenu] = useState(true)
 
-  console.log(toggleBurgerMenu)
+  // when burger menu open, 
 
   return (
       <CartProvider>
+        <div className={toggleBurgerMenu && 'overlay'}></div>
         <Header toggleBurgerMenu={toggleBurgerMenu} setToggleBurgerMenu={setToggleBurgerMenu}/>
         {toggleBurgerMenu && <BurgerMenu setToggleBurgerMenu={setToggleBurgerMenu}/>}
-        <MainContainer />
+        <MainContainer toggleBurgerMenu={toggleBurgerMenu}/>
         {toggleLightbox && <Lightbox />}
       </CartProvider>
   )
