@@ -4,7 +4,7 @@ import ProductInfo from "./ProductInfo"
 const MainContainer = () => {
   return (
     <main className="main-container">
-      <ImageGallery addNav={false}/>
+      <ImageGallery />
       <ProductInfo />
     </main>
   )

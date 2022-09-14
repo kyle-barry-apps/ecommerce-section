@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import LightboxContext from '../contexts/Lightbox'
 import product1 from '../images/image-product-1.jpg'
 import product1thumbnail from '../images/image-product-1-thumbnail.jpg'
 import product2 from '../images/image-product-2.jpg'
@@ -11,8 +12,36 @@ import imageNext from '../images/icon-next.svg'
 import imagePrevious from '../images/icon-previous.svg'
 import iconClose from '../images/icon-close.svg'
 
-const ImageGallery = ({ addNav }) => {
+const ImageGallery = ({ lightboxStyles }) => {
   const [showcase, setShowcase] = useState(product1)
+  const { toggleLightbox, setToggleLightbox } = useContext(LightboxContext)
+  const productArray = [product1, product2, product3, product4]
+
+  const handleNextImageClick = () => {
+    const showcaseIndex = productArray.indexOf(showcase)
+    if(productArray[showcaseIndex] === productArray.at(-1)) {
+      setShowcase(productArray[0])
+      return
+    }
+    setShowcase(productArray[showcaseIndex+1])
+  }
+
+  const handlePrevImageClick = () => {
+    const showcaseIndex = productArray.indexOf(showcase)
+    if(productArray[showcaseIndex] === productArray.at(0)) {
+
+      setShowcase(productArray[productArray.length -1])
+      return
+    }
+    setShowcase(productArray[showcaseIndex - 1])
+  }
+
+  const handleMainImageClick = () => {
+    if(lightboxStyles) {
+      return
+    }
+    setToggleLightbox(!toggleLightbox)
+  }
 
   const handleImageClick = (product) => {
     setShowcase(product)
@@ -20,12 +49,13 @@ const ImageGallery = ({ addNav }) => {
 
   return (
     <section className="image-section">
-      {addNav ? <img className='close-icon' src={iconClose} alt='close icon' /> : null}
-      {addNav ? <div className='image-previous-container'>
-        <img className='image-previous' src={imagePrevious} alt='close icon' /> 
-        </div>: null} 
-      <img className='main-product-image' src={showcase} alt="Main product"/>  
-      {addNav ? <img className='image-next' src={imageNext} alt='close icon' /> : null}
+      <div className='main-product-image-container'> 
+        {lightboxStyles ? <div onClick={() => setToggleLightbox(false)} className='close-icon-container'> <img className='close-icon' src={iconClose} alt='close icon' /> </div>: null}
+        <img onClick={handleMainImageClick} className={lightboxStyles ? 'main-product-image lightbox' : 'main-product-image'} src={showcase} alt="Main product"/>  
+        {/* Icons to render if lightbox is on  */}
+        {lightboxStyles ? <div onClick={handlePrevImageClick} className='image-previous-container'> <img className='image-previous' src={imagePrevious} alt='image previous icon' /> </div>: null} 
+        {lightboxStyles ? <div onClick={handleNextImageClick} className='image-next-container'> <img className='image-next' src={imageNext} alt='image next icon' /></div> : null}
+      </div>
       <div className="gallery">
         <img onClick={()=> handleImageClick(product1)} src={product1thumbnail} alt="Secondary product thumbnail" tabIndex={0} />
         <img onClick={()=> handleImageClick(product2)} src={product2thumbnail} alt="Secondary product thumbnail" tabIndex={0}/>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import logo from '../images/logo.svg'
+import burger from '../images/icon-menu.svg'
 import cartIcon from '../images/icon-cart.svg'
 import avatar from '../images/image-avatar.png'
 import productImage from '../images/image-product-1-thumbnail.jpg'
@@ -7,7 +8,7 @@ import trashIcon from '../images/icon-delete.svg'
 import CartContext from '../contexts/CartContext'
 import { useContext, useState } from 'react'
 
-const Header = () => {
+const Header = ({ toggleBurgerMenu, setToggleBurgerMenu }) => {
   const [toggleCartMenu, setToggleCartMenu] = useState(false)
 
   useEffect(() => {
@@ -55,9 +56,10 @@ const Header = () => {
 
   return (
     <nav className='navbar'>
-      <div className='burger'>
-      </div>
       <div className='logo-list-container'>
+        <div onClick={() => setToggleBurgerMenu(!toggleBurgerMenu)} className='burger'>
+          <img src={burger} alt="menu icon" />
+        </div>
         <a href='#'><img className='logo' src={logo} alt='Sneakers logo' /></a>
         <ul className='nav-list'>
           <li><a href='#'>Collections</a></li>

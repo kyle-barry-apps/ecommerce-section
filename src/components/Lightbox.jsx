@@ -12,7 +12,7 @@ import product4thumbnail from '../images/image-product-4-thumbnail.jpg'
 const Lightbox = () => {
   return (
     <section className='lightbox-container'>
-      <ImageGallery addNav={true}/>
+      <ImageGallery lightboxStyles={true} />
     </section>
   )
 }
