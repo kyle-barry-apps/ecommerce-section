@@ -8,7 +8,7 @@ import LightboxContext from "./contexts/Lightbox";
 
 function App() {
   const { toggleLightbox } = useContext(LightboxContext)
-  const [toggleBurgerMenu, setToggleBurgerMenu] = useState(true)
+  const [toggleBurgerMenu, setToggleBurgerMenu] = useState(false)
 
   // when burger menu open, 
 
